@@ -2,6 +2,7 @@
 ## [2024.09.29.003] - Update to latest HA
 - Removed Python from project.
 - Fixing typos
+- Updated README.md
 
 ## [2021.10.19.000] - Rework/Colab
 Added Python project to project.
