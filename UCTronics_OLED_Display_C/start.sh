@@ -5,15 +5,12 @@ CONFIG_PATH=/data/options.json
 
 TEMP_UNIT="$(bashio::config 'Temperature_Unit')"
 DISABLE_AUTO_START="$(bashio::config 'Stop_Auto_Run')"
-PYTHON="$(bashio::config 'Run_Python_Project')"
 
 bashio::log.info "Starting UCTronics OLED App..."
 bashio::log.info "Tempature Unit = ${TEMP_UNIT}"
 bashio::log.info "Disable Auto Start = ${DISABLE_AUTO_START}"
-bashio::log.info "Disable Auto Start = ${PYTHON}"
 
 if [ "$DISABLE_AUTO_START" = false ]; then
-
 
     if ls /dev/i2c-1; then 
         bashio::log.info "Found i2c access!";

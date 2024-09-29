@@ -1,5 +1,8 @@
 # Changelog
 ## [2021.10.19.000] - Rework/Colab
+- Removed Python from project.
+
+## [2021.10.19.000] - Rework/Colab
 Added Python project to project.
 
 ## [2021.10.18.000] - Rework/Colab

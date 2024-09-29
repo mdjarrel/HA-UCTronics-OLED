@@ -29,12 +29,10 @@
     "boot": "auto",
     "options": {
         "Temperature_Unit": "C",
-        "Stop_Auto_Run": false,
-        "Run_Python_Project": false
+        "Stop_Auto_Run": false
     },
     "schema": {
         "Temperature_Unit": "list(C|F)?",
-        "Stop_Auto_Run": "bool",
-        "Run_Python_Project": "bool"
+        "Stop_Auto_Run": "bool"
     }
 }
