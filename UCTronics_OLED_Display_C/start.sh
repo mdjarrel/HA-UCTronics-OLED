@@ -7,7 +7,7 @@ TEMP_UNIT="$(bashio::config 'Temperature_Unit')"
 DISABLE_AUTO_START="$(bashio::config 'Stop_Auto_Run')"
 
 bashio::log.info "Starting UCTronics OLED App..."
-bashio::log.info "Tempature Unit = ${TEMP_UNIT}"
+bashio::log.info "Temperature Unit = ${TEMP_UNIT}"
 bashio::log.info "Disable Auto Start = ${DISABLE_AUTO_START}"
 
 if [ "$DISABLE_AUTO_START" = false ]; then
@@ -20,7 +20,7 @@ if [ "$DISABLE_AUTO_START" = false ]; then
         make clean
         make 
 
-        bashio::log.info "Setting Tempature Unit $TEMP_UNIT"
+        bashio::log.info "Setting Temperature Unit $TEMP_UNIT"
         bashio::log.info "UCTRONICS OLED Display should now be showing information?";
         if [ "$TEMP_UNIT" = "C" ]; then
             ./display C
