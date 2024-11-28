@@ -8,13 +8,16 @@ This addon will utilise code from Adam Outler, [GitHub adamoutler](https://githu
 
 Special thanks to [DC Walter](https://github.com/dcwalter) for fixing the code to support C unit for temperature, and also fixing CPU usage, and adding the HA Logo.
 
-## First Step
-1. Disable "Protection mode"
-2. Start the addon, this will allow Adam's script to enable I2C interface. 
-### MAKE SURE YOU REBOOT TWICE
+## Install Guide
 
-## Second Step.
-1. Enable "Protection mode"
-2. Start the addon
-3. Check the "Log" and see if there are any error.
-4. Your OLED should be displaying.
+### First Step
+1. Install
+1. Disable "Protection mode"
+1. Start the addon, this will allow Adam's script to enable I2C interface.
+1. Reboot Twice! 
+
+### Second Step.
+1. Re-enable "Protection mode"
+1. Start the addon
+1. Check the "Log" and see if there are any error.
+1. Your OLED should be displaying.
