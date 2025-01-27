@@ -28,11 +28,9 @@
     "url": "https://github.com/mdjarrel/HA-UCTronics-OLED/tree/main/UCTronics_OLED_Display_C",
     "boot": "auto",
     "options": {
-        "Temperature_Unit": "C",
         "Stop_Auto_Run": false
     },
     "schema": {
-        "Temperature_Unit": "list(C|F)?",
         "Stop_Auto_Run": "bool"
     }
 }
