@@ -6,7 +6,8 @@ RUN set -xe \
     && apk add --no-cache gcc build-base git i2c-tools nano linux-headers cmake pacman
 
 # Copy over the C project
-COPY /ssd1306/* /UCTronics_OLED/
+COPY /hardware/* /UCTronics_OLED/
+COPY /project/* /UCTronics_OLED/
 
 COPY run.sh /
 COPY start.sh /
