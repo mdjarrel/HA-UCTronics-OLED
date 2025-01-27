@@ -24,5 +24,5 @@ $(OBJS) : obj/%.o : %.c
 
 
 clean:
-	sudo rm -rf $(OBJ)
-	sudo rm -rf $(TATGET)
+	rm -rf $(OBJ)
+	rm -rf $(TATGET)
