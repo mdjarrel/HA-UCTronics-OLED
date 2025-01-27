@@ -7,8 +7,7 @@ mkfile_path := $(shell pwd)/$(lastword $(MAKEFILE_LIST))
 dir=$(shell dirname $(mkfile_path))
 $(shell mkdir -p $(dir)/$(OBJ))
 
-SRCDIRS :=  rpiInfo/ \
-            st7735/
+SRCDIRS :=  ./
 
 SRCS := $(foreach dir, $(SRCDIRS), $(wildcard $(dir)/*.c))
 NOT_DIR :=$(notdir $(SRCS))
