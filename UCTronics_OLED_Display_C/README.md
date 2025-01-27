@@ -2,7 +2,7 @@
 
 ### NB This is my first HomeAssistant Add-on so use at own risk
 
-Enables the OLED display for UCTRONICS Pi 4 Rack Module.
+Enables the OLED display for UCTRONICS Pi 5 Rack Module.
 
 This addon will utilise code from Adam Outler, [GitHub adamoutler](https://github.com/adamoutler/HassOSConfigurator/tree/main/Pi4EnableI2C) to first enable the I2C interface, you will need to reboot twice as per his documentation. After I2C is enabled then the display will finally show.
 
