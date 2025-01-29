@@ -31,12 +31,9 @@ DURATION = 5
 MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
-# Create the I2C interface.
-bus = SMBus(1,True)
-
 # Create the UC-B86 class.
 # The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
-disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT, bus)
+disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
 
 # Clear display.
 disp.fill(0xFFFF)
@@ -248,6 +245,7 @@ def shell_cmd(cmd):
 def get_options():
     f = open("/data/options.json", "r")
     options = json.loads(f.read())
+	f.close()
     global TEMP_UNIT, SHOW_SPLASH, SHOW_CPU, SHOW_MEMORY, SHOW_STORAGE, SHOW_NETWORK, DURATION
     TEMP_UNIT = options['Temperature_Unit']
     SHOW_SPLASH = options['Show_Splash_Screen']
@@ -264,5 +262,4 @@ def clear_display():
 if __name__ == "__main__":
     get_options()
     start()
-    bus.close()
-
+    disp.close()

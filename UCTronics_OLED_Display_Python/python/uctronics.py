@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: MIT
 
+import os
+import fnctl
 import time
 import numpy as np
 from smbus2 import i2c_msg
+
+I2C_SLAVE_FORCE = 0x0706
 
 ST7735_TFTWIDTH    = 128
 ST7735_TFTHEIGHT   = 160
@@ -136,19 +140,33 @@ def image_to_data(image):
 class UCB86(object):
     """Representation of a UC-B86 board with ST7735 LCD"""
     
-    def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, smbus=None):
+    def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, dev='/dev/i2c-1'):
         """Create an instance of the display using SPI communication.  Must
         provide the GPIO pin number for the D/C pin and the SPI driver.  Can
         optionally provide the GPIO pin number for the reset pin as the rst
         parameter.
         """
-        self._smbus = smbus
+        self._dev = dev
         self.width = width
         self.height = height
+		self.busfd = __openI2C()
+		
+	def __openI2C(self):
+		# I2C Init
+		i2cd = os.open(self._dev, os.O_RDWR)
+		if i2cd < 0:
+			print("Device I2C-1 failed to initialize\n")
+			return None
+		if fnctl.ioctl(i2cd, I2C_SLAVE_FORCE, I2C_ADDRESS) < 0:
+		{
+			return None;
+		}
+		return i2cd;
 
     def __i2c_write_command(self, command, high, low):
-        msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
-        self._smbus.i2c_rdwr(msg)
+        os.write(self.busfd,bytes([command, high, low]))
+        #msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
+        #self._smbus.i2c_rdwr(msg)
         time.sleep(.01)
         
     def __i2c_burst_transfer(self, buff):
@@ -159,13 +177,15 @@ class UCB86(object):
         while length > count:
             if (length - count) > BURST_MAX_LENGTH:
                 #write(i2cd, buff + count, BURST_MAX_LENGTH);
-                msg = i2c_msg.write(I2C_ADDRESS,buff[count:BURST_MAX_LENGTH])
-                self._smbus.i2c_rdwr(msg)
+                os.write(self.busfd,bytes(buff[count:BURST_MAX_LENGTH]))
+                #msg = i2c_msg.write(I2C_ADDRESS,buff[count:BURST_MAX_LENGTH])
+                #self._smbus.i2c_rdwr(msg)
                 count += BURST_MAX_LENGTH
             else:
                 #write(i2cd, buff + count, length - count);
-                msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
-                self._smbus.i2c_rdwr(msg)
+                os.write(self.busfd,bytes(buff[count:]))
+                #msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
+                #self._smbus.i2c_rdwr(msg)
                 count += (length - count)
             time.sleep(0.07);
         self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
@@ -210,3 +230,6 @@ class UCB86(object):
         formattedData = image_to_data(data)
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
         self.__i2c_burst_transfer(formattedData)
+
+	def close(self):
+        os.close(self.busfd)
