@@ -164,7 +164,7 @@ class UCB86(object):
         os.write(self.busfd,bytes([command, high, low]))
         #msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
         #self._smbus.i2c_rdwr(msg)
-        time.sleep(.01)
+        time.sleep(.1)
         
     def __i2c_burst_transfer(self, buff):
         count = 0
@@ -184,7 +184,7 @@ class UCB86(object):
                 #msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
                 #self._smbus.i2c_rdwr(msg)
                 count += (length - count)
-            time.sleep(0.07);
+            time.sleep(0.1);
         self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
         
@@ -211,6 +211,8 @@ class UCB86(object):
         if (y + h - 1) >= ST7735_HEIGHT:
             h = ST7735_HEIGHT - y
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
+        
+        print(bytes(buff))
 
         self.__i2c_burst_transfer(buff)
     
