@@ -66,13 +66,22 @@ def show_storage():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_disk.resize([26,26])  
-    image.paste(icon,(-2,3))
+    icon = img_disk.resize([32,32])  
+    image.paste(icon,(PADDING,PADDING))
 
-    #draw.text((29, 0), "USED: " + storage[0] + ' GB \n', font=small, fill=255)
-    #draw.text((29, 11), "TOTAL: " + storage[1] + ' GB \n', font=small, fill=255)
-    #draw.text((29, 21), "UTILISED: " + storage[2] + ' \n', font=small, fill=255)
-    draw.multiline_text((29,0), "USED: " + storage[0] + ' GB \n' + "TOTAL: " + storage[1] + ' GB \n' + "UTILISED: " + storage[2] + ' \n', font=small, fill=255)
+    ln1 = 'USED: ' + storage[0] + ' GB \n'
+    ln2 = 'TOTAL: ' + storage[1] + ' GB \n'
+    ln3 = 'UTILISED: ' + storage[2] + ' \n'
+    
+    ln1_w = draw.textlength(ln1, font=small)
+    ln2_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln2, font=small)
+    
+    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    
+    ln_x = (width - PADDING) - ln_longest
+    
+    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/storage.png")    
 
@@ -81,7 +90,6 @@ def show_storage():
     time.sleep(DURATION)  
 
 def show_memory():
-
     mem = shell_cmd("free -m | awk 'NR==2{printf \"%.1f,%.1f,%.0f%%\", $3/1000,$2/1000,$3*100/$2 }'")
     mem = mem.split(',')
 
@@ -89,13 +97,22 @@ def show_memory():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_mem.resize([26,26])  
-    image.paste(icon,(-2,3))
+    icon = img_mem.resize([32,32])  
+    image.paste(icon,(PADDING,PADDING))
 
-    #draw.text((29, 0), "USED: " + mem[0] + ' GB \n', font=small, fill=255)
-    #draw.text((29, 11), "TOTAL: " + mem[1] + ' GB \n', font=small, fill=255)
-    #draw.text((29, 21), "UTILISED: " + mem[2] + ' \n', font=small, fill=255)
-    draw.multiline_text((29,0),"USED: " + mem[0] + ' GB \n' + "TOTAL: " + mem[1] + ' GB \n' + "UTILISED: " + mem[2] + ' \n', font=small, fill=255)
+    ln1 = 'USED: ' + mem[0] + ' GB \n'
+    ln2 = 'TOTAL: ' + mem[1] + ' GB \n'
+    ln3 = 'UTILISED: ' + mem[2] + ' \n'
+    
+    ln1_w = draw.textlength(ln1, font=small)
+    ln2_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln2, font=small)
+    
+    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    
+    ln_x = (width - PADDING) - ln_longest
+    
+    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/memory.png")   
 
@@ -105,7 +122,6 @@ def show_memory():
 
 
 def show_cpu_temp():
-
     #host_info = hassos_get_info('host/info')
 
     cpu = shell_cmd("top -bn1 | grep load | awk '{printf \"%.2f\", $(NF-2)}'")
@@ -123,13 +139,22 @@ def show_cpu_temp():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_cpu_64.resize([26,26])  
-    image.paste(icon,(-2,3))
+    icon = img_cpu_64.resize([32,32])  
+    image.paste(icon,(PADDING,PADDING))
 
-    #draw.text((29, 0), 'TEMP: ' + temp, font=small, fill=255)
-    #draw.text((29, 11), 'LOAD: '+ cpu + "% ", font=small, fill=255)  
-    #draw.text((29, 21), uptime.upper(), font=small, fill=255)
-    draw.multiline_text((29,0), 'TEMP: ' + temp + '\n' + 'LOAD: '+ cpu + "% " + '\n' + uptime.upper() + '\n', font=small, fill=255)
+    ln1 = 'TEMP: ' + temp + '\n'
+    ln2 = 'LOAD: '+ cpu + '%\n'
+    ln3 = 'UPTIME: ' + uptime.upper() + '\n'
+    
+    ln1_w = draw.textlength(ln1, font=small)
+    ln2_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln2, font=small)
+    
+    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    
+    ln_x = (width - PADDING) - ln_longest
+    
+    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/cpu.png")
     
@@ -144,20 +169,32 @@ def show_network():
 
     network_info = hassos_get_info('network/info')
     ipv4 = network_info['data']['interfaces'][0]['ipv4']['address'][0].split("/")[0]
-
-    mac = shell_cmd("cat /sys/class/net/eth0/address")
+    mac = 'XX:XX:XX:XX:XX:XX'
+    try:
+        mac = shell_cmd("cat /sys/class/net/eth0/address")
+    except:
+        pass    
 
     # Clear Canvas
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_network.resize([26,26])  
-    image.paste(icon,(-2,3))
+    icon = img_network.resize([32,32])  
+    image.paste(icon,(PADDING,PADDING))
 
-    #draw.text((29, 0), "HOST " + hostname, font=small, fill=255)
-    #draw.text((29, 11), "IP4 " + ipv4, font=small, fill=255)    
-    #draw.text((29, 21), "MAC " + mac.upper(), font=small, fill=255)
-    draw.multiline_text((29,0), "HOST " + hostname + '\n' + "IP4 " + ipv4 + '\n' + "MAC " + mac.upper() + 'n', font=small, fill=255)
+    ln1 = 'HOST: ' + hostname + '\n'
+    ln2 = 'IP4: '+ ipv4 + '%\n'
+    ln3 = 'MAC: ' + mac.upper() + '\n'
+    
+    ln1_w = draw.textlength(ln1, font=small)
+    ln2_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln2, font=small)
+    
+    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    
+    ln_x = (width - PADDING) - ln_longest
+    
+    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/network.png")
 
@@ -167,12 +204,10 @@ def show_network():
 
 def get_text_center(text, font, center_point):
     w = draw.textlength(text, font=font)
-
     return (center_point -(w/2))
 
 
 def show_splash():
-
     os_info = hassos_get_info('os/info')    
     os_version = os_info['data']['version']
     os_upgrade = os_info['data']['update_available']  
@@ -184,7 +219,6 @@ def show_splash():
     core_upgrade = os_info['data']['update_available']
     if (core_upgrade == True):
         core_version =  core_version + "*"
-
 
     # Draw a padded black filled box with style.border width.
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
@@ -217,7 +251,6 @@ def show_splash():
     
     ln2_x = get_text_center(ln2, small, ln_center) #78
     draw.text((ln2_x, 22), ln2, font=small, fill=(0xa5,0x20,0xff)) #a520ff
-
 
     # Display Image to OLED
     #image.save(r"./img/examples/splash.png")
