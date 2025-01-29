@@ -4,6 +4,8 @@ import os
 import fcntl
 import time
 import numpy as np
+import logging
+logger = logging.getLogger(__name__)
 
 I2C_SLAVE_FORCE = 0x0706
 
@@ -154,7 +156,7 @@ class UCB86(object):
         # I2C Init
         i2cd = os.open(self._dev, os.O_RDWR)
         if i2cd < 0:
-            print("Device I2C-1 failed to initialize\n")
+            logger.error("Device I2C-1 failed to initialize\n")
             return 0
         if fcntl.ioctl(i2cd, I2C_SLAVE_FORCE, I2C_ADDRESS) < 0:
             return 0;
@@ -211,11 +213,6 @@ class UCB86(object):
         if (y + h - 1) >= ST7735_HEIGHT:
             h = ST7735_HEIGHT - y
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
-        
-        print('Address window values')
-        print('*'*80)
-        print(str(x) + ',' + str(y) + ',' + str(x + w - 1) + ',' + str(y + h - 1))
-        print('*'*80)
 
         self.__i2c_burst_transfer(buff)
     

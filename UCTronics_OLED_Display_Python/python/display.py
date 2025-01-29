@@ -13,6 +13,8 @@ import time
 import sys, getopt
 import subprocess
 import json
+import logging
+logger = logging.getLogger(__name__)
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 import uctronics
@@ -222,7 +224,8 @@ def shell_cmd(cmd):
         result = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
         pass
-    return result
+    finally:
+        return result
 
 
 def get_options():
@@ -242,14 +245,16 @@ def clear_display():
     disp.fill(0)
     disp.show()
 
+logging.basicConfig(level=logging.INFO)
+
 # Create the UC-B86 class.
 # The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
 disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
-print('Created disp')
+logger.info('Created disp')
 
 # Clear display.
 clear_display()
-print('Cleared disp')
+logger.info('Cleared disp')
 
 # Create blank image for drawing.
 
@@ -257,11 +262,11 @@ width = disp.width
 height = disp.height
 
 image = Image.new("RGB", (width, height))
-print('Created img')
+logger.info('Created img')
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
-print('Created canvas')
+logger.info('Created canvas')
 
 # Load default font.
 # font = ImageFont.load_default()
@@ -269,7 +274,7 @@ p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 14)
 p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 14)
 small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 12)
 smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 10)
-print('Loaded fonts')
+logger.info('Loaded fonts')
 
 
 img_network = Image.open(r"./img/ip-network.png")
@@ -277,13 +282,13 @@ img_mem = Image.open(r"./img/database.png")
 img_disk = Image.open(r"./img/database-outline.png")
 img_ha_logo = m = Image.open(r"./img/home-assistant-logo.png")
 img_cpu_64 = Image.open(r"./img/cpu-64-bit.png")
-print('Loaded imgs')
+logger.info('Loaded imgs')
 
 if __name__ == "__main__":
-    print('Getting options')
+    logger.info('Getting options')
     get_options()
-    print('Starting routine')
+    logger.info('Starting routine')
     start()
-    print('Closing disp')
+    logger.info('Closing disp')
     disp.close()
-    print('Done')
+    logger.info('Done')
