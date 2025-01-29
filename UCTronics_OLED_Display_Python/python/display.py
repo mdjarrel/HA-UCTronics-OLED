@@ -194,16 +194,17 @@ def show_splash():
     # Merge HA Logo with Canvas.
     image.paste(logo,(-2,3))
 
-    draw.line([(34, 16),(123,16)], fill=255, width=1)
+    #draw.line([(34, 16),(123,16)], fill=255, width=1)
+    draw.line([(74, 16),(150,16)], fill=(255,255,255), width=1)
 
     ln1 = "Home Assistant"
-    ln1_x = get_text_center(ln1, p_bold, 78)
-    draw.text((ln1_x, 4), ln1, font=p_bold, fill=255)
+    ln1_x = get_text_center(ln1, p_bold, 112) #78
+    draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
 
     # Write Test, Eventually will get from HA API.
     ln2 = 'OS '+ os_version + ' - ' + core_version
-    ln2_x = get_text_center(ln2, small, 78)
-    draw.text((ln2_x, 20), ln2, font=small, fill=255)
+    ln2_x = get_text_center(ln2, small, 112) #78
+    draw.text((ln2_x, 20), ln2, font=small, fill=(255,255,255))
 
 
     # Display Image to OLED
