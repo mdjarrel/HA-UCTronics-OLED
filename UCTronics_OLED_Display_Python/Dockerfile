@@ -18,19 +18,16 @@ RUN \
     python3 \
     python3-dev \
     py3-pip \
-    py3-rpigpio \
+	py3-requests \
+	py3-pillow \
+	py3-websocket-client \
 	libjpeg \
 	jpeg-dev \
 	libjpeg-turbo-dev \
 	freetype-dev \
 	openjpeg
-
-# Install Python Libs for this Add-on
-RUN pip3 install requests
-RUN pip3 install gpiozero
-RUN pip3 install smbus2
-RUN pip3 install pillow
-RUN pip3 install websocket-client
+	
+RUN pip3 install --break-system-packages smbus2 gpiozero
 
 # Copy over the Python project
 COPY /python* /UCTronics_OLED/
