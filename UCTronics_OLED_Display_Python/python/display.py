@@ -39,7 +39,7 @@ bus = SMBus(1,True)
 disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT, bus)
 
 # Clear display.
-disp.fill(0x07FF)
+disp.fill(0xFFFF)
 disp.show()
 
 # Create blank image for drawing.
@@ -257,7 +257,7 @@ def get_options():
     DURATION =  options['Slide_Duration']
 
 def clear_display():
-    disp.fill(0x07FF)
+    disp.fill(0xFFFF)
     disp.show()
 
 if __name__ == "__main__":
