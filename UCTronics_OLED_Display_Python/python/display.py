@@ -37,23 +37,23 @@ def start():
         try:
             if (SHOW_SPLASH) : show_splash()
         except:
-            pass
+            logger.error(sys.exception())
         try:
             if (SHOW_CPU) : show_cpu_temp()
         except:
-            pass
+            logger.error(sys.exception())
         try:
             if (SHOW_MEMORY) : show_memory()
         except:
-            pass
+            logger.error(sys.exception())
         try:
             if (SHOW_NETWORK) : show_network()
         except:
-            pass
+            logger.error(sys.exception())
         try:
             if (SHOW_STORAGE) : show_storage()
         except:
-            pass
+            logger.error(sys.exception())
         
 
 def show_storage():
