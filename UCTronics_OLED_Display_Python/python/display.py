@@ -223,7 +223,7 @@ def shell_cmd(cmd):
     try:
         result = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
-        pass
+        logger.error(sys.exception())
     finally:
         return result
 
