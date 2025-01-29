@@ -32,6 +32,8 @@ DURATION = 5
 MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
+PADDING = 4
+
 def start():
     while True:
         try:
@@ -61,7 +63,7 @@ def show_storage():
     storage = storage.split(',')
 
     # Clear Canvas
-    draw.rectangle((0,0,128,32), outline=0, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
     icon = img_disk.resize([26,26])  
@@ -192,7 +194,7 @@ def show_splash():
     logo = ImageOps.invert(logo)  
     
     # Merge HA Logo with Canvas.
-    image.paste(logo,(-2,3))
+    image.paste(logo,(PADDING,PADDING)) # (-2,3)
 
     ln1 = "Home Assistant"
     ln2 = 'OS '+ os_version + ' - ' + core_version
@@ -202,16 +204,16 @@ def show_splash():
     
     ln_longest = max([ln1_w,ln2_w])
     
-    ln_center = ((width - 4) - ln_longest) + (ln_longest / 2)
+    ln_center = ((width - PADDING) - ln_longest) + (ln_longest / 2)
     
     logger.info('Longest: ' + str(ln_longest))
     logger.info('Center: ' + str(ln_center))
     
-    #draw.line([(34, 16),(123,16)], fill=255, width=1)
-    draw.line([((width - ln_longest + 10), 20),((width - 10),20)], fill=(255,255,255), width=1)
-    
     ln1_x = get_text_center(ln1, p_bold, ln_center) #78
     draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
+    
+    #draw.line([(34, 16),(123,16)], fill=255, width=1)
+    draw.line([(ln1_x, 20),((width - PADDING),20)], fill=(255,255,255), width=1)
     
     ln2_x = get_text_center(ln2, small, ln_center) #78
     draw.text((ln2_x, 22), ln2, font=small, fill=(255,255,255))
@@ -281,8 +283,8 @@ logger.info('Created canvas')
 
 # Load default font.
 # font = ImageFont.load_default()
-p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 14)
-p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 14)
+p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 13)
+p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 13)
 small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 12)
 smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 10)
 logger.info('Loaded fonts')
