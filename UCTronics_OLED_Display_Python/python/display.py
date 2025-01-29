@@ -259,5 +259,5 @@ def clear_display():
 if __name__ == "__main__":
     get_options()
     start()
-	bus.close()
+    bus.close()
 
