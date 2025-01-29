@@ -225,7 +225,8 @@ def show_splash():
 
     # Display Image to OLED
     #image.save(r"./img/examples/splash.png")
-    disp.image(data=image)
+    #disp.image(data=image)
+	clear_display()
     disp.show() 
     time.sleep(DURATION)
 
