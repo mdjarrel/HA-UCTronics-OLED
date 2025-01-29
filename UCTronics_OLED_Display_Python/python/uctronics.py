@@ -184,7 +184,7 @@ class UCB86(object):
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01)
         
     def fill_rect(self, x, y, w, h, color):
-        buff = [0] * (2*w*h)
+        buff = [ (color >> 8) & 0xFF, color & 0xFF] * (w*h)
         count = 0
         # clipping
         if (x >= ST7735_WIDTH) or (y >= ST7735_HEIGHT):
@@ -195,9 +195,6 @@ class UCB86(object):
             h = ST7735_HEIGHT - y
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
 
-        for count in range(0,2*w*h,2):
-            buff[count] = color >> 8
-            buff[count + 1] = color & 0xFF
         self.__i2c_burst_transfer(buff)
     
     def fill(self, color):
