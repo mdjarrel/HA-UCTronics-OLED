@@ -150,9 +150,9 @@ def show_memory():
 
 
 def show_cpu_temp():
-    logger.info('Show_CPU_Temp')
+    #logger.info('Show_CPU_Temp')
     cpu = shell_cmd("top -bn1 | grep load | awk '{printf \"%.2f\", $(NF-2)}'")
-    logger.info('cpu:' + str(cpu))
+    #logger.info('cpu:' + str(cpu))
     temp = 0.0
     try:
         tempString =  shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")
@@ -163,7 +163,7 @@ def show_cpu_temp():
         logger.error(sys.exception())
     
     uptime = shell_cmd("uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'")
-    logger.info('uptime:' + str(uptime))
+    #logger.info('uptime:' + str(uptime))
 
     # Check temapture unit and convert if required.
     if (TEMP_UNIT == 'C'): 
@@ -195,16 +195,16 @@ def show_cpu_temp():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
-    logger.info('Text: [\n' + ln + ']')
+    #logger.info('Text: [\n' + ln + ']')
     
     draw.multiline_text((START,HEADER_Y_OFFSET + PADDING), ln, font=small, fill=(255,255,255))
     
-    logger.info('Drew multiline_text')
+    #logger.info('Drew multiline_text')
 
     #image.save(r"./img/examples/cpu.png")
     
     disp.image(data=image)
-    logger.info('Displayed image')
+    #logger.info('Displayed image')
     disp.show()
     time.sleep(DURATION)
 
@@ -254,7 +254,7 @@ def show_network():
     #for line in [ln1,ln2,ln3]:
     #    ln += line + '\n'
     
-    draw.multiline_text((START,HEADER_Y_OFFSET + PADDING), ln3+'\n', font=smaller, fill=(255,255,255))
+    draw.multiline_text((START,HEADER_Y_OFFSET + PADDING), ln3+'\n', font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/network.png")
 
