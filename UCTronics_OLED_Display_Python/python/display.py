@@ -32,7 +32,7 @@ MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
 # Create the I2C interface.
-bus = SMBus(1)
+bus = SMBus(1,True)
 
 # Create the UC-B86 class.
 # The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
@@ -43,7 +43,6 @@ disp.fill(0x07FF)
 disp.show()
 
 # Create blank image for drawing.
-# Make sure to create image with mode '1' for 1-bit color.
 
 width = disp.width
 height = disp.height
