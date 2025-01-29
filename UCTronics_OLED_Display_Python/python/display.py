@@ -82,7 +82,7 @@ def show_storage():
     ln_x = (width - PADDING) - ln_longest
     
     ln = ''
-    for line in [ln1_w,ln2_w,ln3_w]:
+    for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
     draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
@@ -117,7 +117,7 @@ def show_memory():
     ln_x = (width - PADDING) - ln_longest
     
     ln = ''
-    for line in [ln1_w,ln2_w,ln3_w]:
+    for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
     draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
@@ -163,7 +163,7 @@ def show_cpu_temp():
     ln_x = (width - PADDING) - ln_longest
     
     ln = ''
-    for line in [ln1_w,ln2_w,ln3_w]:
+    for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
     draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
@@ -206,7 +206,11 @@ def show_network():
     
     ln_x = (width - PADDING) - ln_longest
     
-    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
+    ln = ''
+    for line in [ln1,ln2,ln3]:
+        ln += line + '\n'
+    
+    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/network.png")
 
