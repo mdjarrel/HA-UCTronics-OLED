@@ -178,18 +178,23 @@ def show_cpu_temp():
 
 def show_network():
     host_info = hassos_get_info('host/info')
+    logger.info(str(host_info))
     hostname = host_info['data']['hostname'].upper()
 
     network_info = hassos_get_info('network/info')
-    logger.info(str(network_info))
+    #logger.info(str(network_info))
     ipv4 = 'xxx.xxx.xxx.xxx'
     try:
-        ipv4 = network_info['data']['interfaces'][0]['ipv4']['address'][0].split("/")[0]
+        for interface in network_info['data']['interfaces']:
+            if interface['primary']:
+                ipv4 = interface['ipv4']['address'][0].split("/")[0]
     except:
         pass
     mac = 'XX:XX:XX:XX:XX:XX'
     try:
-        mac = shell_cmd("cat /sys/class/net/eth0/address")
+        for interface in network_info['data']['interfaces']:
+            if interface['primary']:
+                mac = interface['mac']
     except:
         pass    
 
