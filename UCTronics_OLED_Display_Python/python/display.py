@@ -353,6 +353,7 @@ def shell_cmd(cmd):
     try:
         result = subprocess.check_output(cmd, shell=True).decode("utf-8")
     except:
+        logger.warning('The shell cmd: \"' + cmd + '\" failed.')
         logger.error(sys.exception())
     finally:
         return result
