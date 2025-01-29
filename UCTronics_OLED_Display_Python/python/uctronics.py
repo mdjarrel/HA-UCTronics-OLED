@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 
 import time
+import numpy as np
 from smbus2 import i2c_msg
 
 ST7735_TFTWIDTH    = 128
@@ -124,7 +125,6 @@ def color565(r, g, b):
     """
     return ((r & 0xF8) << 8) | ((g & 0xFC) << 3) | (b >> 3)
 
-import numpy as np
 def image_to_data(image):
     """Generator function to convert a PIL image to 16-bit 565 RGB bytes."""
     # NumPy is much faster at doing this. NumPy code provided by:
@@ -136,7 +136,7 @@ def image_to_data(image):
 class UCB86(object):
 	"""Representation of a UC-B86 board with ST7735 LCD"""
 	
-	def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, smbus):
+	def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, smbus=None):
 		"""Create an instance of the display using SPI communication.  Must
         provide the GPIO pin number for the D/C pin and the SPI driver.  Can
         optionally provide the GPIO pin number for the reset pin as the rst
@@ -207,8 +207,9 @@ class UCB86(object):
 	def show(self):
 		pass
 		
-	def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data)
+	def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[])
 		col = h - y
 		row = w - x
+		formattedData = image_to_data(data)
 		self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
-		self.__i2c_burst_transfer(data)
+		self.__i2c_burst_transfer(formattedData)

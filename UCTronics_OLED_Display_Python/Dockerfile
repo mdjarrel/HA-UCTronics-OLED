@@ -21,6 +21,7 @@ RUN \
 	py3-requests \
 	py3-pillow \
 	py3-websocket-client \
+	py3-numpy \
 	libjpeg \
 	jpeg-dev \
 	libjpeg-turbo-dev \
