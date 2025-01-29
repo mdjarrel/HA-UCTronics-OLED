@@ -1,4 +1,7 @@
 # Changelog
+## [2025.01.27.001] - Convert to SKU-0004
+Changed from the Pi4 to Pi5 cluster
+
 ## [2024.09.29.003] - Update to latest HA
 - Removed Python from project.
 - Fixing typos

@@ -1,6 +1,6 @@
 {
     "name": "UCTRONICS OLED Display(C)",
-    "version": "2024.09.29.003",
+    "version": "2025.01.27.001",
     "slug": "uctronics_oled_display",
     "description": "This addon lets you display to your OLED provided in the UCTRONICS Pi Rack 5 with the st7735 LCD.",
     "arch": [
@@ -28,11 +28,9 @@
     "url": "https://github.com/mdjarrel/HA-UCTronics-OLED/tree/main/UCTronics_OLED_Display_C",
     "boot": "auto",
     "options": {
-        "Temperature_Unit": "C",
         "Stop_Auto_Run": false
     },
     "schema": {
-        "Temperature_Unit": "list(C|F)?",
         "Stop_Auto_Run": "bool"
     }
 }
