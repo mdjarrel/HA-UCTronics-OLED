@@ -95,7 +95,7 @@ def show_storage():
 
     #image.save(r"./img/examples/storage.png")    
 
-    disp.image(image)
+    disp.image(data=image)
     disp.show()
     time.sleep(DURATION)  
 
@@ -117,7 +117,7 @@ def show_memory():
 
     #image.save(r"./img/examples/memory.png")   
 
-    disp.image(image)
+    disp.image(data=image)
     disp.show()
     time.sleep(DURATION) 
 
@@ -150,7 +150,7 @@ def show_cpu_temp():
 
     #image.save(r"./img/examples/cpu.png")
     
-    disp.image(image)
+    disp.image(data=image)
     disp.show()
     time.sleep(DURATION)
 
@@ -177,7 +177,7 @@ def show_network():
 
     #image.save(r"./img/examples/network.png")
 
-    disp.image(image)
+    disp.image(data=image)
     disp.show()
     time.sleep(DURATION)
 
@@ -226,7 +226,7 @@ def show_splash():
 
     # Display Image to OLED
     #image.save(r"./img/examples/splash.png")
-    disp.image(image)
+    disp.image(data=image)
     disp.show() 
     time.sleep(DURATION)
 
