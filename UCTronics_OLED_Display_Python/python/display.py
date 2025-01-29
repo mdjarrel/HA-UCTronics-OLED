@@ -197,8 +197,8 @@ def show_splash():
     ln1 = "Home Assistant"
     ln2 = 'OS '+ os_version + ' - ' + core_version
     
-    ln1_w = draw.textlength(ln1, font=font)
-    ln2_w = draw.textlength(ln2, font=font)
+    ln1_w = draw.textlength(ln1, font=p_bold)
+    ln2_w = draw.textlength(ln2, font=small)
     
     ln_longest = max([ln1_w,ln2_w])
     
