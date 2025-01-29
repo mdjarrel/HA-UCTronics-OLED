@@ -35,8 +35,7 @@ MAX_HEIGHT = 80
 disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
 
 # Clear display.
-disp.fill(0xFFFF)
-disp.show()
+clear_display()
 
 # Create blank image for drawing.
 

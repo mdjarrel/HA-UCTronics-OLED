@@ -155,9 +155,9 @@ class UCB86(object):
         i2cd = os.open(self._dev, os.O_RDWR)
         if i2cd < 0:
             print("Device I2C-1 failed to initialize\n")
-            return None
+            return 0
         if fcntl.ioctl(i2cd, I2C_SLAVE_FORCE, I2C_ADDRESS) < 0:
-            return None;
+            return 0;
         return i2cd;
 
     def __i2c_write_command(self, command, high, low):
