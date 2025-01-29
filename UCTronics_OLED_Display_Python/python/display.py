@@ -157,9 +157,9 @@ def show_cpu_temp():
 
     # Check temapture unit and convert if required.
     if (TEMP_UNIT == 'C'): 
-        temp = "%0.2f °C " % (temp)
+        temp = "%0.2f °C" % (temp)
     else:
-        temp = "%0.2f °F " % (temp * 9.0 / 5.0 + 32)
+        temp = "%0.2f °F" % (temp * 9.0 / 5.0 + 32)
 
 
     # Clear Canvas
@@ -171,7 +171,7 @@ def show_cpu_temp():
 
     ln1 = 'TEMP: ' + temp
     ln2 = 'LOAD: '+ cpu + '%'
-    ln3 = 'UPTIME: ' + uptime.upper()
+    ln3 = 'UPTIME: ' + uptime.rstrip().upper()
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
