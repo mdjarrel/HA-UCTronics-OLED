@@ -149,10 +149,12 @@ def show_memory():
 
 
 def show_cpu_temp():
-    #host_info = hassos_get_info('host/info')
-
     cpu = shell_cmd("top -bn1 | grep load | awk '{printf \"%.2f\", $(NF-2)}'")
-    temp =  float(shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")) / 1000.00
+    temp = 0.0
+    try:
+        temp =  float(shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")) / 1000.00
+    except:
+        logger.error(sys.exception())
     uptime = shell_cmd("uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'")
 
     # Check temapture unit and convert if required.
@@ -250,7 +252,6 @@ def show_network():
 def get_text_center(text, font, center_point):
     w = draw.textlength(text, font=font)
     return (center_point -(w/2))
-
 
 def show_splash():
     os_info = hassos_get_info('os/info')    
