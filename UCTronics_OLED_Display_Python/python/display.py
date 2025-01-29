@@ -69,9 +69,9 @@ def show_storage():
     icon = img_disk.resize([32,32])  
     image.paste(icon,(PADDING,PADDING))
 
-    ln1 = 'USED: ' + storage[0] + ' GB \n'
-    ln2 = 'TOTAL: ' + storage[1] + ' GB \n'
-    ln3 = 'UTILISED: ' + storage[2] + ' \n'
+    ln1 = 'USED: ' + storage[0] + ' GB'
+    ln2 = 'TOTAL: ' + storage[1] + ' GB'
+    ln3 = 'UTILISED: ' + storage[2]
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
@@ -81,7 +81,11 @@ def show_storage():
     
     ln_x = (width - PADDING) - ln_longest
     
-    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
+    ln = ''
+    for line in [ln1_w,ln2_w,ln3_w]:
+        ln += line + '\n'
+    
+    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/storage.png")    
 
@@ -100,9 +104,9 @@ def show_memory():
     icon = img_mem.resize([32,32])  
     image.paste(icon,(PADDING,PADDING))
 
-    ln1 = 'USED: ' + mem[0] + ' GB \n'
-    ln2 = 'TOTAL: ' + mem[1] + ' GB \n'
-    ln3 = 'UTILISED: ' + mem[2] + ' \n'
+    ln1 = 'USED: ' + mem[0] + ' GB'
+    ln2 = 'TOTAL: ' + mem[1] + ' GB'
+    ln3 = 'UTILISED: ' + mem[2]
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
@@ -112,7 +116,11 @@ def show_memory():
     
     ln_x = (width - PADDING) - ln_longest
     
-    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
+    ln = ''
+    for line in [ln1_w,ln2_w,ln3_w]:
+        ln += line + '\n'
+    
+    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/memory.png")   
 
@@ -142,9 +150,9 @@ def show_cpu_temp():
     icon = img_cpu_64.resize([32,32])  
     image.paste(icon,(PADDING,PADDING))
 
-    ln1 = 'TEMP: ' + temp + '\n'
-    ln2 = 'LOAD: '+ cpu + '%\n'
-    ln3 = 'UPTIME: ' + uptime.upper() + '\n'
+    ln1 = 'TEMP: ' + temp
+    ln2 = 'LOAD: '+ cpu + '%'
+    ln3 = 'UPTIME: ' + uptime.upper()
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
@@ -154,7 +162,11 @@ def show_cpu_temp():
     
     ln_x = (width - PADDING) - ln_longest
     
-    draw.multiline_text((ln_x,0), ln1 + ln2 + ln3, font=small, fill=(255,255,255))
+    ln = ''
+    for line in [ln1_w,ln2_w,ln3_w]:
+        ln += line + '\n'
+    
+    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/cpu.png")
     
@@ -182,9 +194,9 @@ def show_network():
     icon = img_network.resize([32,32])  
     image.paste(icon,(PADDING,PADDING))
 
-    ln1 = 'HOST: ' + hostname + '\n'
-    ln2 = 'IP4: '+ ipv4 + '%\n'
-    ln3 = 'MAC: ' + mac.upper() + '\n'
+    ln1 = 'HOST: ' + hostname
+    ln2 = 'IP4: '+ ipv4
+    ln3 = 'MAC: ' + mac.upper()
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
