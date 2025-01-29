@@ -339,7 +339,7 @@ def show_header():
     HEADER_Y_OFFSET = bottom + (2*PADDING_THIN)
     
     # Clear Header Canvas
-    draw.rectangle((0,0,width,HEADER_Y_OFFSET), outline=0, fill=(0xe8,0xe8,0xe8))
+    draw.rectangle((0,0,width,HEADER_Y_OFFSET), outline=0, fill=(0xc8,0xc8,0xc8))
     
     draw.multiline_text((PADDING_THIN,PADDING_THIN), ln, font=small, fill=(0,0,0))
 
