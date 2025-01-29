@@ -190,7 +190,7 @@ def show_splash():
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Get HA Logo and Resize
-    logo = img_ha_logo.resize([26,26])
+    logo = img_ha_logo.resize([32,32])
     logo = ImageOps.invert(logo)  
     
     # Merge HA Logo with Canvas.
@@ -213,10 +213,10 @@ def show_splash():
     draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
     
     #draw.line([(34, 16),(123,16)], fill=255, width=1)
-    draw.line([(ln1_x, 20),((width - PADDING),20)], fill=(255,255,255), width=1)
+    draw.line([(ln1_x, 20),((width - PADDING),20)], fill=(0x94,0x82,0x94), width=1) #948294
     
     ln2_x = get_text_center(ln2, small, ln_center) #78
-    draw.text((ln2_x, 22), ln2, font=small, fill=(255,255,255))
+    draw.text((ln2_x, 22), ln2, font=small, fill=(0xa5,0x20,0xff)) #a520ff
 
 
     # Display Image to OLED
