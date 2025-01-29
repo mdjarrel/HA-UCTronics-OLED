@@ -31,12 +31,27 @@ MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
 def start():
-    while True:        
-        if (SHOW_SPLASH) : show_splash()
-        if (SHOW_CPU) : show_cpu_temp()
-        if (SHOW_MEMORY) : show_memory()
-        if (SHOW_NETWORK) : show_network()
-        if (SHOW_STORAGE) : show_storage()
+    while True:
+        try:
+            if (SHOW_SPLASH) : show_splash()
+        except:
+            pass
+        try:
+            if (SHOW_CPU) : show_cpu_temp()
+        except:
+            pass
+        try:
+            if (SHOW_MEMORY) : show_memory()
+        except:
+            pass
+        try:
+            if (SHOW_NETWORK) : show_network()
+        except:
+            pass
+        try:
+            if (SHOW_STORAGE) : show_storage()
+        except:
+            pass
         
 
 def show_storage():
