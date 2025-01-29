@@ -194,16 +194,26 @@ def show_splash():
     # Merge HA Logo with Canvas.
     image.paste(logo,(-2,3))
 
-    #draw.line([(34, 16),(123,16)], fill=255, width=1)
-    draw.line([(42, 20),(150,20)], fill=(255,255,255), width=1)
-
     ln1 = "Home Assistant"
-    ln1_x = get_text_center(ln1, p_bold, 96) #78
-    draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
-
-    # Write Test, Eventually will get from HA API.
     ln2 = 'OS '+ os_version + ' - ' + core_version
-    ln2_x = get_text_center(ln2, small, 96) #78
+    
+    ln1_w = draw.textlength(ln1, font=font)
+    ln2_w = draw.textlength(ln2, font=font)
+    
+    ln_longest = max([ln1_w,ln2_w])
+    
+    ln_center = (width - ln_longest) + (ln_longest / 2)
+    
+    logger.info('Longest: ' + str(ln_longest))
+    logger.info('Center: ' + str(ln_center))
+    
+    #draw.line([(34, 16),(123,16)], fill=255, width=1)
+    draw.line([((width - ln_longest + 10), 20),((width - 10),20)], fill=(255,255,255), width=1)
+    
+    ln1_x = get_text_center(ln1, p_bold, ln_center) #78
+    draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
+    
+    ln2_x = get_text_center(ln2, small, ln_center) #78
     draw.text((ln2_x, 22), ln2, font=small, fill=(255,255,255))
 
 
