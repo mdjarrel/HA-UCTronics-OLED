@@ -261,10 +261,10 @@ print('Created canvas')
 
 # Load default font.
 # font = ImageFont.load_default()
-p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 11)
-p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 11)
-small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 10)
-smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
+p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
+p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
+small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
+smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
 print('Loaded fonts')
 
 
