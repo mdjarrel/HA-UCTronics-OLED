@@ -94,7 +94,7 @@ def show_storage():
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln3, font=small)
     
     ln_longest = max([ln1_w,ln2_w,ln3_w])
     
@@ -129,7 +129,7 @@ def show_memory():
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln3, font=small)
     
     ln_longest = max([ln1_w,ln2_w,ln3_w])
     
@@ -175,7 +175,7 @@ def show_cpu_temp():
     
     ln1_w = draw.textlength(ln1, font=small)
     ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln3, font=small)
     
     ln_longest = max([ln1_w,ln2_w,ln3_w])
     
@@ -196,7 +196,7 @@ def show_cpu_temp():
 
 def show_network():
     host_info = hassos_get_info('host/info')
-    logger.info(str(host_info))
+    #logger.info(str(host_info))
     hostname = host_info['data']['hostname'].upper()
 
     network_info = hassos_get_info('network/info')
@@ -229,7 +229,7 @@ def show_network():
     
     #ln1_w = draw.textlength(ln1, font=small)
     #ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln2, font=small)
+    ln3_w = draw.textlength(ln3, font=small)
     
     #ln_longest = max([ln1_w,ln2_w,ln3_w])
     
@@ -305,7 +305,7 @@ def show_splash():
     
 def show_header():
     host_info = hassos_get_info('host/info')
-    logger.info(str(host_info))
+    #logger.info(str(host_info))
     hostname = host_info['data']['hostname']
 
     network_info = hassos_get_info('network/info')
