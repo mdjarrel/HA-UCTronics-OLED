@@ -33,6 +33,7 @@ MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
 PADDING = 4
+START = 48 + (2 * PADDING)
 
 def start():
     while True:
@@ -66,7 +67,7 @@ def show_storage():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_disk.resize([32,32])  
+    icon = img_disk.resize([48,48])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'USED: ' + storage[0] + ' GB'
@@ -85,7 +86,7 @@ def show_storage():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
-    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((START,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/storage.png")    
 
@@ -101,7 +102,7 @@ def show_memory():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_mem.resize([32,32])  
+    icon = img_mem.resize([48,48])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'USED: ' + mem[0] + ' GB'
@@ -120,7 +121,7 @@ def show_memory():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
-    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((START,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/memory.png")   
 
@@ -147,7 +148,7 @@ def show_cpu_temp():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_cpu_64.resize([32,32])  
+    icon = img_cpu_64.resize([48,48])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'TEMP: ' + temp
@@ -166,7 +167,7 @@ def show_cpu_temp():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
-    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((START,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/cpu.png")
     
@@ -191,7 +192,7 @@ def show_network():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_network.resize([32,32])  
+    icon = img_network.resize([48,48])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'HOST: ' + hostname
@@ -210,7 +211,7 @@ def show_network():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
-    draw.multiline_text((ln_x,0), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((START,0), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/network.png")
 
