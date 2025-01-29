@@ -207,7 +207,7 @@ class UCB86(object):
 	def show(self):
 		pass
 		
-	def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[])
+	def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[]):
 		col = h - y
 		row = w - x
 		formattedData = image_to_data(data)
