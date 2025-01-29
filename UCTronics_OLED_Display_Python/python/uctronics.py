@@ -1,10 +1,9 @@
 # SPDX-License-Identifier: MIT
 
 import os
-import fnctl
+import fcntl
 import time
 import numpy as np
-from smbus2 import i2c_msg
 
 I2C_SLAVE_FORCE = 0x0706
 

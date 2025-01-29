@@ -14,7 +14,6 @@ import sys, getopt
 import subprocess
 import json
 
-from smbus2 import SMBus
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 import uctronics
 
