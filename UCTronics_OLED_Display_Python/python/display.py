@@ -33,7 +33,9 @@ MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
 PADDING = 4
-START = 48 + (2 * PADDING)
+ICON_W = 40
+ICON_H = ICON_W
+START = ICON_W + (2 * PADDING)
 
 def start():
     while True:
@@ -67,7 +69,7 @@ def show_storage():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_disk.resize([48,48])  
+    icon = img_disk.resize([ICON_W,ICON_H])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'USED: ' + storage[0] + ' GB'
@@ -102,7 +104,7 @@ def show_memory():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_mem.resize([48,48])  
+    icon = img_mem.resize([ICON_W,ICON_H])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'USED: ' + mem[0] + ' GB'
@@ -148,7 +150,7 @@ def show_cpu_temp():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_cpu_64.resize([48,48])  
+    icon = img_cpu_64.resize([ICON_W,ICON_H])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'TEMP: ' + temp
@@ -202,7 +204,7 @@ def show_network():
     draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
-    icon = img_network.resize([48,48])  
+    icon = img_network.resize([ICON_W,ICON_H])  
     image.paste(icon,(PADDING,PADDING))
 
     ln1 = 'HOST: ' + hostname
@@ -267,8 +269,8 @@ def show_splash():
     
     ln_center = ((width - PADDING) - ln_longest) + (ln_longest / 2)
     
-    logger.info('Longest: ' + str(ln_longest))
-    logger.info('Center: ' + str(ln_center))
+    #logger.info('Longest: ' + str(ln_longest))
+    #logger.info('Center: ' + str(ln_center))
     
     ln1_x = get_text_center(ln1, p_bold, ln_center) #78
     draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
