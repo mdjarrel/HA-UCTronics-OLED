@@ -1,0 +1,61 @@
+#include <tunables/global>
+
+profile uctronics_lcd_display_python flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  
+  capability,
+  file,
+  mount options=(user,rw,noatime) /dev/sda1,
+  mount options=(user,rw,noatime) /dev/sda2,
+  mount options=(user,rw,noatime) /dev/sdb1,
+  mount options=(user,rw,noatime) /dev/sdb2,
+  mount options=(user,rw,noatime) /dev/mmcblk0p1,
+  mount options=(user,rw,noatime) /dev/mmcblk0p2,
+
+  mount,
+  umount,
+  remount,
+
+  capability setgid,
+  capability setuid,
+  capability dac_override,
+
+  # S6-Overlay
+  /init ix,
+  /bin/** ix,
+  /usr/bin/** ix,
+  /run/{s6,s6-rc*,service}/** ix,
+  /package/** ix,
+  /command/** ix,
+  /etc/services.d/** rwix,
+  /etc/cont-init.d/** rwix,
+  /etc/cont-finish.d/** rwix,
+  /run/{,**} rwk,
+  /dev/tty rw,
+  #/usr/lib/bashio/** ix,
+  #/etc/s6/** rix,
+  #/var/run/** mrwkl,
+  #/var/run/ mrwkl,
+  #/proc/self/attr/** mrwkl,
+  # Files required
+  /dev/sda1 mrwkl,
+  /dev/sda2 mrkwl,
+  /dev/sdb1 mrwkl,
+  /dev/sdb2 mrkwl,
+  /dev/mmcblk0p1 mrwkl,
+  /dev/mmcblk0p1 mrkwl,
+  /dev/* mrwkl,
+  /tmp/* mrwkl,
+  /tmp/ mrkwl,
+  
+  # Data access
+  /data/** rw,
+
+
+  # suppress ptrace denials when using 'docker ps' or using 'ps' inside a container
+  ptrace (trace,read) peer=docker-default,
+ 
+  # docker daemon confinement requires explict allow rule for signal
+  signal (receive) set=(kill,term) peer=/usr/bin/docker,
+
+}

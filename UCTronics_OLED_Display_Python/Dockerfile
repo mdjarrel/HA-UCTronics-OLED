@@ -1,0 +1,44 @@
+ARG BUILD_FROM
+FROM ${BUILD_FROM}
+ENV LANG C.UTF-8
+
+RUN set -xe \
+    && apk add --no-cache gcc build-base git i2c-tools nano linux-headers cmake pacman
+	
+RUN \
+    set -xe \
+    && apk add --no-cache \
+    procps\
+    bash \
+    jq \
+    tzdata \
+    curl \
+    nano \
+    ca-certificates \
+    python3 \
+    python3-dev \
+    py3-pip \
+    py3-rpigpio \
+	libjpeg \
+	jpeg-dev \
+	libjpeg-turbo-dev \
+	freetype-dev \
+	openjpeg
+
+# Install Python Libs for this Add-on
+RUN pip3 install requests
+RUN pip3 install gpiozero
+RUN pip3 install smbus2
+RUN pip3 install pillow
+RUN pip3 install websocket-client
+
+# Copy over the Python project
+COPY /python* /UCTronics_OLED/
+
+COPY run.sh /
+COPY start.sh /
+WORKDIR /data
+RUN chmod a+x /run.sh
+RUN chmod a+x /start.sh
+
+CMD [ "/start.sh" ]
