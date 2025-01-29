@@ -272,7 +272,7 @@ def show_splash():
     logo = ImageOps.invert(logo)  
     
     # Merge HA Logo with Canvas.
-    image.paste(logo,(PADDING,PADDING)) # (-2,3)
+    image.paste(logo,(PADDING,HEADER_Y_OFFSET + PADDING)) # (-2,3)
 
     ln1 = "Home Assistant"
     ln2 = 'OS '+ os_version + ' - ' + core_version
@@ -291,7 +291,7 @@ def show_splash():
     draw.text((ln1_x, HEADER_Y_OFFSET + 4), ln1, font=p_bold, fill=(255,255,255))
     
     #draw.line([(34, 16),(123,16)], fill=255, width=1)
-    draw.line([(ln1_x, HEADER_Y_OFFSET + 20),((width - PADDING),20)], fill=(0x94,0x82,0x94), width=1) #948294
+    draw.line([(ln1_x, HEADER_Y_OFFSET + 20),((width - PADDING),HEADER_Y_OFFSET + 20)], fill=(0x94,0x82,0x94), width=1) #948294
     
     ln2_x = get_text_center(ln2, small, ln_center) #78
     draw.text((ln2_x, HEADER_Y_OFFSET + 22), ln2, font=small, fill=(0xa5,0x20,0xff)) #a520ff
@@ -305,7 +305,7 @@ def show_splash():
 def show_header():
     host_info = hassos_get_info('host/info')
     logger.info(str(host_info))
-    hostname = host_info['data']['hostname'].upper()
+    hostname = host_info['data']['hostname']
 
     network_info = hassos_get_info('network/info')
     #logger.info(str(network_info))
@@ -326,11 +326,11 @@ def show_header():
     
     ln1 = 'HOST: ' + hostname
     ln2 = 'IP4: '+ ipv4
-    ln3 = 'MAC: ' + mac.upper()
+    #ln3 = 'MAC: ' + mac.upper()
 
     
     ln = ''
-    for line in [ln1,ln2,ln3]:
+    for line in [ln1,ln2]:
         ln += line + '\n'
         
     left, top, right, bottom = draw.multiline_textbbox((0,0), ln, font=small)
