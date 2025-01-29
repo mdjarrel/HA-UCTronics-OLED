@@ -149,19 +149,19 @@ class UCB86(object):
         self._dev = dev
         self.width = width
         self.height = height
-		self.busfd = __openI2C()
-		
-	def __openI2C(self):
-		# I2C Init
-		i2cd = os.open(self._dev, os.O_RDWR)
-		if i2cd < 0:
-			print("Device I2C-1 failed to initialize\n")
-			return None
-		if fnctl.ioctl(i2cd, I2C_SLAVE_FORCE, I2C_ADDRESS) < 0:
-		{
-			return None;
-		}
-		return i2cd;
+        self.busfd = __openI2C()
+        
+    def __openI2C(self):
+        # I2C Init
+        i2cd = os.open(self._dev, os.O_RDWR)
+        if i2cd < 0:
+            print("Device I2C-1 failed to initialize\n")
+            return None
+        if fnctl.ioctl(i2cd, I2C_SLAVE_FORCE, I2C_ADDRESS) < 0:
+        {
+            return None;
+        }
+        return i2cd;
 
     def __i2c_write_command(self, command, high, low):
         os.write(self.busfd,bytes([command, high, low]))
@@ -231,5 +231,5 @@ class UCB86(object):
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
         self.__i2c_burst_transfer(formattedData)
 
-	def close(self):
+    def close(self):
         os.close(self.busfd)
