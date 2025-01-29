@@ -9,7 +9,7 @@
         "aarch64"
     ],
 	"init": false,
-    "log_level": "info",
+    "log_level": "debug",
     "startup": "services",
     "hassio_api": true,
     "auth_api": true,
