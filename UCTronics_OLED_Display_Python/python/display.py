@@ -182,7 +182,7 @@ def show_splash():
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Get HA Logo and Resize
-    logo = img_ha_logo.resize([26,26])
+    logo = img_ha_logo.resize([32,32])
     logo = ImageOps.invert(logo)  
     
     # Merge HA Logo with Canvas.
