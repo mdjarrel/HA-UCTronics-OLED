@@ -148,7 +148,7 @@ class UCB86(object):
         self._dev = dev
         self.width = width
         self.height = height
-        self.busfd = __openI2C()
+        self.busfd = self.__openI2C()
         
     def __openI2C(self):
         # I2C Init
