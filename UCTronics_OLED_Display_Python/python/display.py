@@ -56,10 +56,10 @@ draw = ImageDraw.Draw(image)
 
 # Load default font.
 # font = ImageFont.load_default()
-p = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 9)
-p_bold = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 9)
-small = ImageFont.truetype("usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 8)
-smaller = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", 7)
+p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
+p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
+small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
+smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
 
 
 img_network = Image.open(r"./img/ip-network.png") 
