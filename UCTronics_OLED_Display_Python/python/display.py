@@ -149,15 +149,20 @@ def show_memory():
 
 
 def show_cpu_temp():
+    logger.info('Show_CPU_Temp')
     cpu = shell_cmd("top -bn1 | grep load | awk '{printf \"%.2f\", $(NF-2)}'")
+    logger.info('cpu:' + str(cpu))
     temp = 0.0
     try:
         tempString =  shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")
+        logger.info('temp:' + str(tempString))
         if not tempString:
             temp = float(tempString) / 1000.00
     except:
         logger.error(sys.exception())
+    
     uptime = shell_cmd("uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'")
+    logger.info('uptime:' + str(uptime))
 
     # Check temapture unit and convert if required.
     if (TEMP_UNIT == 'C'): 
