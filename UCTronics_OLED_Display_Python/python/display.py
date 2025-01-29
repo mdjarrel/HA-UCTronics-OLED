@@ -36,7 +36,7 @@ bus = SMBus(1)
 
 # Create the UC-B86 class.
 # The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
-disp = uctronics.ucb86(MAX_WIDTH, MAX_HEIGHT, bus)
+disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT, bus)
 
 # Clear display.
 disp.fill(0)
