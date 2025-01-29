@@ -156,7 +156,7 @@ def show_cpu_temp():
     try:
         tempString =  shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")
         logger.info('temp:' + str(tempString))
-        if not tempString:
+        if tempString:
             temp = float(tempString) / 1000.00
     except:
         logger.error(sys.exception())
@@ -197,10 +197,13 @@ def show_cpu_temp():
     logger.info('Text: [\n' + ln + ']')
     
     draw.multiline_text((START,HEADER_Y_OFFSET + PADDING), ln, font=small, fill=(255,255,255))
+    
+    logger.info('Drew multiline_text')
 
     #image.save(r"./img/examples/cpu.png")
     
     disp.image(data=image)
+    logger.info('Displayed image')
     disp.show()
     time.sleep(DURATION)
 
