@@ -212,7 +212,7 @@ class UCB86(object):
             h = ST7735_HEIGHT - y
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
         
-        print(bytes(buff))
+        print(x, y, x + w - 1, y + h - 1)
 
         self.__i2c_burst_transfer(buff)
     
