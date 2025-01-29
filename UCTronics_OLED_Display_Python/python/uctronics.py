@@ -161,6 +161,7 @@ class UCB86(object):
         return i2cd;
 
     def __i2c_write_command(self, command, high, low):
+        print('Writing: ' + str([command, high, low]))
         os.write(self.busfd,bytes([command, high, low]))
         #msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
         #self._smbus.i2c_rdwr(msg)
@@ -174,12 +175,14 @@ class UCB86(object):
         while length > count:
             if (length - count) > BURST_MAX_LENGTH:
                 #write(i2cd, buff + count, BURST_MAX_LENGTH);
+                print('Writing: ' + str(buff[count:BURST_MAX_LENGTH]))
                 os.write(self.busfd,bytes(buff[count:BURST_MAX_LENGTH]))
                 #msg = i2c_msg.write(I2C_ADDRESS,buff[count:BURST_MAX_LENGTH])
                 #self._smbus.i2c_rdwr(msg)
                 count += BURST_MAX_LENGTH
             else:
                 #write(i2cd, buff + count, length - count);
+                print('Writing: ' + str(buff[count:]))
                 os.write(self.busfd,bytes(buff[count:]))
                 #msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
                 #self._smbus.i2c_rdwr(msg)
