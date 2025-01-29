@@ -76,7 +76,7 @@ def start():
             logger.error(sys.exception())
         if not pageDisp:
             time.sleep(1)
-        logger.info('Image size is now ' + str(image.width) + 'x' + str(image.height) + '.')
+        #logger.info('Image size is now ' + str(image.width) + 'x' + str(image.height) + '.')
 
 def show_storage():
     storage =  shell_cmd('df -h | awk \'$NF=="/"{printf "%d,%d,%s", $3,$2,$5}\'')
@@ -156,7 +156,7 @@ def show_cpu_temp():
     temp = 0.0
     try:
         tempString =  shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")
-        logger.info('temp:' + str(tempString))
+        #logger.info('temp:' + str(tempString))
         if tempString:
             temp = float(tempString) / 1000.00
     except:
