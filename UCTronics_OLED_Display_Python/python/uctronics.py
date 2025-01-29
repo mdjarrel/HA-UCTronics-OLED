@@ -134,82 +134,82 @@ def image_to_data(image):
     return np.dstack(((color >> 8) & 0xFF, color & 0xFF)).flatten().tolist()
 
 class UCB86(object):
-	"""Representation of a UC-B86 board with ST7735 LCD"""
-	
-	def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, smbus=None):
-		"""Create an instance of the display using SPI communication.  Must
+    """Representation of a UC-B86 board with ST7735 LCD"""
+    
+    def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, smbus=None):
+        """Create an instance of the display using SPI communication.  Must
         provide the GPIO pin number for the D/C pin and the SPI driver.  Can
         optionally provide the GPIO pin number for the reset pin as the rst
         parameter.
         """
-		self._smbus = smbus
-		self.width = width
-		self.height = height
+        self._smbus = smbus
+        self.width = width
+        self.height = height
 
-	def __i2c_write_command(self, command, high, low):
-		msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
-		self._smbus.i2c_rdwr(msg)
-		time.sleep(.00001)
-		
-	def __i2c_burst_transfer(self, buff):
-		count = 0
-		length = len(buff)
-		
-		self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x01);
-		while length > count:
-			if (length - count) > BURST_MAX_LENGTH:
-				#write(i2cd, buff + count, BURST_MAX_LENGTH);
-				msg = i2c_msg.write(I2C_ADDRESS,buff[count:BURST_MAX_LENGTH])
-				self._smbus.i2c_rdwr(msg)
-				count += BURST_MAX_LENGTH
-			else:
-				#write(i2cd, buff + count, length - count);
-				msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
-				self._smbus.i2c_rdwr(msg)
-				count += (length - count)
-			time.sleep(0.0007);
-		self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
-		self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
-		
-	def __lcd_set_address_window(self, x0, y0, x1, y1):
-		"""Set display coordinates
-		"""
-		# col address set
-		self.__i2c_write_command(X_COORDINATE_REG, x0 + ST7735_XSTART, x1 + ST7735_XSTART)
-		# row address set
-		self.__i2c_write_command(Y_COORDINATE_REG, y0 + ST7735_YSTART, y1 + ST7735_YSTART)
-		# write to RAM
-		self.__i2c_write_command(CHAR_DATA_REG, 0x00, 0x00)
-		
-		self.__i2c_write_command(SYNC_REG, 0x00, 0x01)
-		
-	def fill_rect(self, x, y, w, h, color):
-		buff = [0] * (2*w*h)
-		count = 0
-		# clipping
-		if (x >= ST7735_WIDTH) or (y >= ST7735_HEIGHT):
-			return
-		if (x + w - 1) >= ST7735_WIDTH:
-			w = ST7735_WIDTH - x
-		if (y + h - 1) >= ST7735_HEIGHT:
-			h = ST7735_HEIGHT - y
-		self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
+    def __i2c_write_command(self, command, high, low):
+        msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
+        self._smbus.i2c_rdwr(msg)
+        time.sleep(.00001)
+        
+    def __i2c_burst_transfer(self, buff):
+        count = 0
+        length = len(buff)
+        
+        self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x01);
+        while length > count:
+            if (length - count) > BURST_MAX_LENGTH:
+                #write(i2cd, buff + count, BURST_MAX_LENGTH);
+                msg = i2c_msg.write(I2C_ADDRESS,buff[count:BURST_MAX_LENGTH])
+                self._smbus.i2c_rdwr(msg)
+                count += BURST_MAX_LENGTH
+            else:
+                #write(i2cd, buff + count, length - count);
+                msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
+                self._smbus.i2c_rdwr(msg)
+                count += (length - count)
+            time.sleep(0.0007);
+        self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
+        self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
+        
+    def __lcd_set_address_window(self, x0, y0, x1, y1):
+        """Set display coordinates
+        """
+        # col address set
+        self.__i2c_write_command(X_COORDINATE_REG, x0 + ST7735_XSTART, x1 + ST7735_XSTART)
+        # row address set
+        self.__i2c_write_command(Y_COORDINATE_REG, y0 + ST7735_YSTART, y1 + ST7735_YSTART)
+        # write to RAM
+        self.__i2c_write_command(CHAR_DATA_REG, 0x00, 0x00)
+        
+        self.__i2c_write_command(SYNC_REG, 0x00, 0x01)
+        
+    def fill_rect(self, x, y, w, h, color):
+        buff = [0] * (2*w*h)
+        count = 0
+        # clipping
+        if (x >= ST7735_WIDTH) or (y >= ST7735_HEIGHT):
+            return
+        if (x + w - 1) >= ST7735_WIDTH:
+            w = ST7735_WIDTH - x
+        if (y + h - 1) >= ST7735_HEIGHT:
+            h = ST7735_HEIGHT - y
+        self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
 
-		for count in range(0,2*w*h,2):
-			buff[count] = color >> 8
-			buff[count + 1] = color & 0xFF
-		self.__i2c_burst_transfer(buff)
-	
-	def fill(self, color):
-		self.fill_rect(0, 0, ST7735_WIDTH, ST7735_HEIGHT, color);
-		self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
-		
-	def show(self):
-		pass
-		
-	def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[]):
-		col = h - y
-		row = w - x
-		formattedData = image_to_data(data)
-		self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
-		self.__i2c_burst_transfer(formattedData)
+        for count in range(0,2*w*h,2):
+            buff[count] = color >> 8
+            buff[count + 1] = color & 0xFF
+        self.__i2c_burst_transfer(buff)
+    
+    def fill(self, color):
+        self.fill_rect(0, 0, ST7735_WIDTH, ST7735_HEIGHT, color);
+        self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
+        
+    def show(self):
+        pass
+        
+    def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[]):
+        col = h - y
+        row = w - x
+        formattedData = image_to_data(data)
+        self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
+        self.__i2c_burst_transfer(formattedData)
