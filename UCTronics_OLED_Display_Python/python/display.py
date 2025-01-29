@@ -181,7 +181,12 @@ def show_network():
     hostname = host_info['data']['hostname'].upper()
 
     network_info = hassos_get_info('network/info')
-    ipv4 = network_info['data']['interfaces'][0]['ipv4']['address'][0].split("/")[0]
+    logger.info(str(network_info))
+    ipv4 = 'xxx.xxx.xxx.xxx'
+    try:
+        ipv4 = network_info['data']['interfaces'][0]['ipv4']['address'][0].split("/")[0]
+    except:
+        pass
     mac = 'XX:XX:XX:XX:XX:XX'
     try:
         mac = shell_cmd("cat /sys/class/net/eth0/address")
