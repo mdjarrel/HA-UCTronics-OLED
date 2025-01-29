@@ -189,9 +189,9 @@ class UCB86(object):
 		# clipping
 		if (x >= ST7735_WIDTH) or (y >= ST7735_HEIGHT):
 			return
-		if (x + w - 1) >= ST7735_WIDTH
+		if (x + w - 1) >= ST7735_WIDTH:
 			w = ST7735_WIDTH - x
-		if (y + h - 1) >= ST7735_HEIGHT
+		if (y + h - 1) >= ST7735_HEIGHT:
 			h = ST7735_HEIGHT - y
 		self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
 
