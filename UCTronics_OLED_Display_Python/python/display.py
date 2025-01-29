@@ -227,9 +227,11 @@ def clear_display():
 # Create the UC-B86 class.
 # The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
 disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
+print('Created disp')
 
 # Clear display.
 clear_display()
+print('Cleared disp')
 
 # Create blank image for drawing.
 
@@ -237,10 +239,11 @@ width = disp.width
 height = disp.height
 
 image = Image.new("RGB", (width, height))
+print('Created img')
 
 # Get drawing object to draw on image.
 draw = ImageDraw.Draw(image)
-
+print('Created canvas')
 
 # Load default font.
 # font = ImageFont.load_default()
@@ -248,15 +251,21 @@ p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
 p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
 small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
 smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
+print('Loaded fonts')
 
 
-img_network = Image.open(r"./img/ip-network.png") 
-img_mem = Image.open(r"./img/database.png") 
-img_disk = Image.open(r"./img/database-outline.png") 
-img_ha_logo = m = Image.open(r"./img/home-assistant-logo.png") 
-img_cpu_64 = Image.open(r"./img/cpu-64-bit.png") 
+img_network = Image.open(r"./img/ip-network.png")
+img_mem = Image.open(r"./img/database.png")
+img_disk = Image.open(r"./img/database-outline.png")
+img_ha_logo = m = Image.open(r"./img/home-assistant-logo.png")
+img_cpu_64 = Image.open(r"./img/cpu-64-bit.png")
+print('Loaded imgs')
 
 if __name__ == "__main__":
+    print('Getting options')
     get_options()
+    print('Starting routine')
     start()
+    print('Closing disp')
     disp.close()
+    print('Done')
