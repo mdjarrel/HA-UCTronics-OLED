@@ -182,7 +182,7 @@ def show_network():
     time.sleep(DURATION)
 
 def get_text_center(text, font, center_point):
-    w, h = draw.textsize(text, font=font)
+    w = draw.textlength(text, font=font)
 
     return (center_point -(w/2))
 
