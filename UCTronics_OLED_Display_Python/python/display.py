@@ -76,6 +76,7 @@ def start():
             logger.error(sys.exception())
         if not pageDisp:
             time.sleep(1)
+        logger.info('Image size is now ' + str(image.width) + 'x' + str(image.height) + '.')
 
 def show_storage():
     storage =  shell_cmd('df -h | awk \'$NF=="/"{printf "%d,%d,%s", $3,$2,$5}\'')
