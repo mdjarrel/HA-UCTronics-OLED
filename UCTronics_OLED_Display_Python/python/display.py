@@ -195,15 +195,15 @@ def show_splash():
     image.paste(logo,(-2,3))
 
     #draw.line([(34, 16),(123,16)], fill=255, width=1)
-    draw.line([(58, 20),(150,20)], fill=(255,255,255), width=1)
+    draw.line([(42, 20),(150,20)], fill=(255,255,255), width=1)
 
     ln1 = "Home Assistant"
-    ln1_x = get_text_center(ln1, p_bold, 104) #78
+    ln1_x = get_text_center(ln1, p_bold, 96) #78
     draw.text((ln1_x, 4), ln1, font=p_bold, fill=(255,255,255))
 
     # Write Test, Eventually will get from HA API.
     ln2 = 'OS '+ os_version + ' - ' + core_version
-    ln2_x = get_text_center(ln2, small, 104) #78
+    ln2_x = get_text_center(ln2, small, 96) #78
     draw.text((ln2_x, 22), ln2, font=small, fill=(255,255,255))
 
 
