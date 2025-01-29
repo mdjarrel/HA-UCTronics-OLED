@@ -228,7 +228,6 @@ class UCB86(object):
         row = w - x
         formattedData = image_to_data(data)
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
-        self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
         self.__i2c_burst_transfer(formattedData)
 
     def close(self):
