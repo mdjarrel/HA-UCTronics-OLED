@@ -237,7 +237,12 @@ def hassos_get_info(type):
 
 
 def shell_cmd(cmd):
-    return subprocess.check_output(cmd, shell=True).decode("utf-8")
+	result = ''
+	try:
+		result = subprocess.check_output(cmd, shell=True).decode("utf-8")
+	except:
+		pass
+    return result
 
 
 def get_options():
