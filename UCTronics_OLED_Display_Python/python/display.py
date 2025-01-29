@@ -92,13 +92,13 @@ def show_storage():
     ln2 = 'TOTAL: ' + storage[1] + ' GB'
     ln3 = 'UTILISED: ' + storage[2]
     
-    ln1_w = draw.textlength(ln1, font=small)
-    ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln3, font=small)
+    #ln1_w = draw.textlength(ln1, font=small)
+    #ln2_w = draw.textlength(ln2, font=small)
+    #ln3_w = draw.textlength(ln3, font=small)
     
-    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    #ln_longest = max([ln1_w,ln2_w,ln3_w])
     
-    ln_x = (width - PADDING) - ln_longest
+    #ln_x = (width - PADDING) - ln_longest
     
     ln = ''
     for line in [ln1,ln2,ln3]:
@@ -127,13 +127,13 @@ def show_memory():
     ln2 = 'TOTAL: ' + mem[1] + ' GB'
     ln3 = 'UTILISED: ' + mem[2]
     
-    ln1_w = draw.textlength(ln1, font=small)
-    ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln3, font=small)
+    #ln1_w = draw.textlength(ln1, font=small)
+    #ln2_w = draw.textlength(ln2, font=small)
+    #ln3_w = draw.textlength(ln3, font=small)
     
-    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    #ln_longest = max([ln1_w,ln2_w,ln3_w])
     
-    ln_x = (width - PADDING) - ln_longest
+    #ln_x = (width - PADDING) - ln_longest
     
     ln = ''
     for line in [ln1,ln2,ln3]:
@@ -173,13 +173,13 @@ def show_cpu_temp():
     ln2 = 'LOAD: '+ cpu + '%'
     ln3 = 'UPTIME: ' + uptime.rstrip().upper()
     
-    ln1_w = draw.textlength(ln1, font=small)
-    ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln3, font=small)
+    #ln1_w = draw.textlength(ln1, font=small)
+    #ln2_w = draw.textlength(ln2, font=small)
+    #ln3_w = draw.textlength(ln3, font=small)
     
-    ln_longest = max([ln1_w,ln2_w,ln3_w])
+    #ln_longest = max([ln1_w,ln2_w,ln3_w])
     
-    ln_x = (width - PADDING) - ln_longest
+    #ln_x = (width - PADDING) - ln_longest
     
     ln = ''
     for line in [ln1,ln2,ln3]:
@@ -229,7 +229,7 @@ def show_network():
     
     #ln1_w = draw.textlength(ln1, font=small)
     #ln2_w = draw.textlength(ln2, font=small)
-    ln3_w = draw.textlength(ln3, font=small)
+    #ln3_w = draw.textlength(ln3, font=small)
     
     #ln_longest = max([ln1_w,ln2_w,ln3_w])
     
@@ -328,7 +328,6 @@ def show_header():
     ln1 = 'HOST: ' + hostname
     ln2 = 'IP4: '+ ipv4
     #ln3 = 'MAC: ' + mac.upper()
-
     
     ln = ''
     for line in [ln1,ln2]:
