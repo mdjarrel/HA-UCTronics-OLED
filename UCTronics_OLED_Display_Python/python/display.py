@@ -167,7 +167,7 @@ def show_splash():
     draw.rectangle((0, 0, width, height), outline=0, fill=0)
 
     # Get HA Logo and Resize
-    logo = img_ha_logo.resize([26,26])
+    logo = img_ha_logo.resize([32,32])
     logo = ImageOps.invert(logo)  
     
     # Merge HA Logo with Canvas.
@@ -220,7 +220,7 @@ def get_options():
     DURATION =  options['Slide_Duration']
 
 def clear_display():
-    disp.fill(0x8410)
+    disp.fill(0)
     disp.show()
 
 # Create the UC-B86 class.
@@ -246,10 +246,10 @@ print('Created canvas')
 
 # Load default font.
 # font = ImageFont.load_default()
-p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
-p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
-small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
-smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
+p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 11)
+p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 11)
+small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 10)
+smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
 print('Loaded fonts')
 
 
