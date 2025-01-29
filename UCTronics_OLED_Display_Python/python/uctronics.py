@@ -187,7 +187,7 @@ class UCB86(object):
 		buff = [0] * (2*w*h)
 		count = 0
 		# clipping
-		if (x >= ST7735_WIDTH) || (y >= ST7735_HEIGHT):
+		if (x >= ST7735_WIDTH) or (y >= ST7735_HEIGHT):
 			return
 		if (x + w - 1) >= ST7735_WIDTH
 			w = ST7735_WIDTH - x
