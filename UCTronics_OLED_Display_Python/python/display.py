@@ -341,7 +341,7 @@ def show_header():
     # Clear Header Canvas
     draw.rectangle((0,0,width,HEADER_Y_OFFSET), outline=0, fill=(0xe8,0xe8,0xe8))
     
-    draw.multiline_text((PADDING_THIN,PADDING_THIN), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((PADDING_THIN,PADDING_THIN), ln, font=small, fill=(0,0,0))
 
 def hassos_get_info(type):
     info = shell_cmd('curl -sSL -H "Authorization: Bearer $SUPERVISOR_TOKEN" http://supervisor/' + type)
