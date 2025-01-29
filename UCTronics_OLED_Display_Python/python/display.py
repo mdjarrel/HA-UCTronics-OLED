@@ -152,7 +152,9 @@ def show_cpu_temp():
     cpu = shell_cmd("top -bn1 | grep load | awk '{printf \"%.2f\", $(NF-2)}'")
     temp = 0.0
     try:
-        temp =  float(shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")) / 1000.00
+        tempString =  shell_cmd("cat /sys/class/thermal/thermal_zone0/temp")
+        if not tempString:
+            temp = float(tempString) / 1000.00
     except:
         logger.error(sys.exception())
     uptime = shell_cmd("uptime | grep -ohe 'up .*' | sed 's/,//g' | awk '{ print $2" "$3 }'")
