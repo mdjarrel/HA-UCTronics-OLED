@@ -202,7 +202,7 @@ def show_splash():
     
     ln_longest = max([ln1_w,ln2_w])
     
-    ln_center = (width - ln_longest) + (ln_longest / 2)
+    ln_center = ((width - 4) - ln_longest) + (ln_longest / 2)
     
     logger.info('Longest: ' + str(ln_longest))
     logger.info('Center: ' + str(ln_center))
