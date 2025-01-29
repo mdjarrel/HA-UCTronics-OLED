@@ -29,7 +29,7 @@ RUN \
 	freetype-dev \
 	openjpeg
 	
-RUN pip3 install --break-system-packages smbus2 gpiozero
+#RUN pip3 install --break-system-packages smbus2 gpiozero
 
 # Copy over the Python project
 COPY /python* /UCTronics_OLED/
