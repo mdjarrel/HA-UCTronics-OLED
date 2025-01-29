@@ -187,8 +187,7 @@ def show_splash():
 
     # Display Image to OLED
     #image.save(r"./img/examples/splash.png")
-    #disp.image(data=image)
-    clear_display()
+    disp.image(data=image)
     disp.show() 
     time.sleep(DURATION)
 
@@ -221,7 +220,7 @@ def get_options():
     DURATION =  options['Slide_Duration']
 
 def clear_display():
-    disp.fill(0xFFFF)
+    disp.fill(0x8410)
     disp.show()
 
 # Create the UC-B86 class.
