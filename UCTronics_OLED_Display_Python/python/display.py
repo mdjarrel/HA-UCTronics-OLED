@@ -34,6 +34,7 @@ HEADER_Y_OFFSET = 32
 MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
+PADDING_THIN = 2
 PADDING = 4
 ICON_W = 32
 ICON_H = ICON_W
@@ -335,12 +336,12 @@ def show_header():
         
     left, top, right, bottom = draw.multiline_textbbox((0,0), ln, font=small)
     global HEADER_Y_OFFSET
-    HEADER_Y_OFFSET = bottom
+    HEADER_Y_OFFSET = bottom + (2*PADDING_THIN)
     
     # Clear Header Canvas
-    draw.rectangle((0,0,width,HEADER_Y_OFFSET), outline=0, fill=0)
+    draw.rectangle((0,0,width,HEADER_Y_OFFSET), outline=0, fill=(0xe8,0xe8,0xe8))
     
-    draw.multiline_text((PADDING,PADDING), ln, font=small, fill=(255,255,255))
+    draw.multiline_text((PADDING_THIN,PADDING_THIN), ln, font=small, fill=(255,255,255))
 
 def hassos_get_info(type):
     info = shell_cmd('curl -sSL -H "Authorization: Bearer $SUPERVISOR_TOKEN" http://supervisor/' + type)
@@ -401,7 +402,7 @@ logger.info('Created canvas')
 # font = ImageFont.load_default()
 p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 13)
 p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 13)
-small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 12)
+small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 11)
 smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 10)
 logger.info('Loaded fonts')
 
