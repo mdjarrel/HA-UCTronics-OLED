@@ -30,39 +30,6 @@ DURATION = 5
 MAX_WIDTH = 160
 MAX_HEIGHT = 80
 
-# Create the UC-B86 class.
-# The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
-disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
-
-# Clear display.
-clear_display()
-
-# Create blank image for drawing.
-
-width = disp.width
-height = disp.height
-
-image = Image.new("RGB", (width, height))
-
-# Get drawing object to draw on image.
-draw = ImageDraw.Draw(image)
-
-
-# Load default font.
-# font = ImageFont.load_default()
-p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
-p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
-small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
-smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
-
-
-img_network = Image.open(r"./img/ip-network.png") 
-img_mem = Image.open(r"./img/database.png") 
-img_disk = Image.open(r"./img/database-outline.png") 
-img_ha_logo = m = Image.open(r"./img/home-assistant-logo.png") 
-img_cpu_64 = Image.open(r"./img/cpu-64-bit.png") 
-
-
 def start():
     while True:        
         if (SHOW_SPLASH) : show_splash()
@@ -256,6 +223,38 @@ def get_options():
 def clear_display():
     disp.fill(0xFFFF)
     disp.show()
+
+# Create the UC-B86 class.
+# The first two parameters are the pixel width and pixel height.  Change these to the right size for your display!
+disp = uctronics.UCB86(MAX_WIDTH, MAX_HEIGHT)
+
+# Clear display.
+clear_display()
+
+# Create blank image for drawing.
+
+width = disp.width
+height = disp.height
+
+image = Image.new("RGB", (width, height))
+
+# Get drawing object to draw on image.
+draw = ImageDraw.Draw(image)
+
+
+# Load default font.
+# font = ImageFont.load_default()
+p = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 9)
+p_bold = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf", 9)
+small = ImageFont.truetype("usr/share/fonts/dejavu/DejaVuSans.ttf", 8)
+smaller = ImageFont.truetype("/usr/share/fonts/dejavu/DejaVuSans.ttf", 7)
+
+
+img_network = Image.open(r"./img/ip-network.png") 
+img_mem = Image.open(r"./img/database.png") 
+img_disk = Image.open(r"./img/database-outline.png") 
+img_ha_logo = m = Image.open(r"./img/home-assistant-logo.png") 
+img_cpu_64 = Image.open(r"./img/cpu-64-bit.png") 
 
 if __name__ == "__main__":
     get_options()
