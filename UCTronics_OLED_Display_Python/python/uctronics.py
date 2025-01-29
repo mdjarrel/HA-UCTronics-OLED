@@ -164,7 +164,7 @@ class UCB86(object):
         os.write(self.busfd,bytes([command, high, low]))
         #msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
         #self._smbus.i2c_rdwr(msg)
-        time.sleep(.00001)
+        #time.sleep(.00001)
         
     def __i2c_burst_transfer(self, buff):
         count = 0
@@ -184,7 +184,7 @@ class UCB86(object):
                 #msg = i2c_msg.write(I2C_ADDRESS,buff[count:])
                 #self._smbus.i2c_rdwr(msg)
                 count += (length - count)
-            time.sleep(0.0007);
+            #time.sleep(0.0007);
         self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
         
