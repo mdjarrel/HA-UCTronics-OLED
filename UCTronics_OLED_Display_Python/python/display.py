@@ -194,6 +194,8 @@ def show_cpu_temp():
     for line in [ln1,ln2,ln3]:
         ln += line + '\n'
     
+    logger.info('Text: [\n' + ln + ']')
+    
     draw.multiline_text((START,HEADER_Y_OFFSET + PADDING), ln, font=small, fill=(255,255,255))
 
     #image.save(r"./img/examples/cpu.png")
