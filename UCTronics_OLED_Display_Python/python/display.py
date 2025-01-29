@@ -223,7 +223,7 @@ def show_splash():
     # Display Image to OLED
     #image.save(r"./img/examples/splash.png")
     #disp.image(data=image)
-	clear_display()
+    clear_display()
     disp.show() 
     time.sleep(DURATION)
 
@@ -245,7 +245,7 @@ def shell_cmd(cmd):
 def get_options():
     f = open("/data/options.json", "r")
     options = json.loads(f.read())
-	f.close()
+    f.close()
     global TEMP_UNIT, SHOW_SPLASH, SHOW_CPU, SHOW_MEMORY, SHOW_STORAGE, SHOW_NETWORK, DURATION
     TEMP_UNIT = options['Temperature_Unit']
     SHOW_SPLASH = options['Show_Splash_Screen']
