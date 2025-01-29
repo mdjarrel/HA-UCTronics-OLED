@@ -65,9 +65,10 @@ def show_storage():
     icon = img_disk.resize([26,26])  
     image.paste(icon,(-2,3))
 
-    draw.text((29, 0), "USED: " + storage[0] + ' GB \n', font=small, fill=255)
-    draw.text((29, 11), "TOTAL: " + storage[1] + ' GB \n', font=small, fill=255)
-    draw.text((29, 21), "UTILISED: " + storage[2] + ' \n', font=small, fill=255) 
+    #draw.text((29, 0), "USED: " + storage[0] + ' GB \n', font=small, fill=255)
+    #draw.text((29, 11), "TOTAL: " + storage[1] + ' GB \n', font=small, fill=255)
+    #draw.text((29, 21), "UTILISED: " + storage[2] + ' \n', font=small, fill=255)
+    draw.multiline_text((29,0), "USED: " + storage[0] + ' GB \n' + "TOTAL: " + storage[1] + ' GB \n' + "UTILISED: " + storage[2] + ' \n', font=small, fill=255)
 
     #image.save(r"./img/examples/storage.png")    
 
@@ -81,15 +82,16 @@ def show_memory():
     mem = mem.split(',')
 
     # Clear Canvas
-    draw.rectangle((0,0,128,32), outline=0, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
     icon = img_mem.resize([26,26])  
     image.paste(icon,(-2,3))
 
-    draw.text((29, 0), "USED: " + mem[0] + ' GB \n', font=small, fill=255)
-    draw.text((29, 11), "TOTAL: " + mem[1] + ' GB \n', font=small, fill=255)
-    draw.text((29, 21), "UTILISED: " + mem[2] + ' \n', font=small, fill=255)  
+    #draw.text((29, 0), "USED: " + mem[0] + ' GB \n', font=small, fill=255)
+    #draw.text((29, 11), "TOTAL: " + mem[1] + ' GB \n', font=small, fill=255)
+    #draw.text((29, 21), "UTILISED: " + mem[2] + ' \n', font=small, fill=255)
+    draw.multiline_text((29,0),"USED: " + mem[0] + ' GB \n' + "TOTAL: " + mem[1] + ' GB \n' + "UTILISED: " + mem[2] + ' \n', font=small, fill=255)
 
     #image.save(r"./img/examples/memory.png")   
 
@@ -114,15 +116,16 @@ def show_cpu_temp():
 
 
     # Clear Canvas
-    draw.rectangle((0,0,128,32), outline=0, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
     icon = img_cpu_64.resize([26,26])  
     image.paste(icon,(-2,3))
 
-    draw.text((29, 0), 'TEMP: ' + temp, font=small, fill=255)
-    draw.text((29, 11), 'LOAD: '+ cpu + "% ", font=small, fill=255)  
-    draw.text((29, 21), uptime.upper(), font=small, fill=255)
+    #draw.text((29, 0), 'TEMP: ' + temp, font=small, fill=255)
+    #draw.text((29, 11), 'LOAD: '+ cpu + "% ", font=small, fill=255)  
+    #draw.text((29, 21), uptime.upper(), font=small, fill=255)
+    draw.multiline_text((29,0), 'TEMP: ' + temp + '\n' + 'LOAD: '+ cpu + "% " + '\n' + uptime.upper() + '\n', font=small, fill=255)
 
     #image.save(r"./img/examples/cpu.png")
     
@@ -141,15 +144,16 @@ def show_network():
     mac = shell_cmd("cat /sys/class/net/eth0/address")
 
     # Clear Canvas
-    draw.rectangle((0,0,128,32), outline=0, fill=0)
+    draw.rectangle((0,0,width,height), outline=0, fill=0)
 
     # Resize and merge icon to Canvas
     icon = img_network.resize([26,26])  
     image.paste(icon,(-2,3))
 
-    draw.text((29, 0), "HOST " + hostname, font=small, fill=255)
-    draw.text((29, 11), "IP4 " + ipv4, font=small, fill=255)    
-    draw.text((29, 21), "MAC " + mac.upper(), font=small, fill=255)    
+    #draw.text((29, 0), "HOST " + hostname, font=small, fill=255)
+    #draw.text((29, 11), "IP4 " + ipv4, font=small, fill=255)    
+    #draw.text((29, 21), "MAC " + mac.upper(), font=small, fill=255)
+    draw.multiline_text((29,0), "HOST " + hostname + '\n' + "IP4 " + ipv4 + '\n' + "MAC " + mac.upper() + 'n', font=small, fill=255)
 
     #image.save(r"./img/examples/network.png")
 
