@@ -223,6 +223,9 @@ class UCB86(object):
     def show(self):
         pass
         
+    def sync(self):
+        self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
+        
     def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[]):
         col = h - y
         row = w - x

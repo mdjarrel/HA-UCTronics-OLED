@@ -76,6 +76,7 @@ def start():
             logger.error(sys.exception())
         if not pageDisp:
             time.sleep(1)
+        clear_display()
         #logger.info('Image size is now ' + str(image.width) + 'x' + str(image.height) + '.')
 
 def show_storage():
@@ -388,6 +389,11 @@ def get_options():
 def clear_display():
     disp.fill(0)
     disp.show()
+    
+def snooze():
+    for i in range(0,DURATION):
+        disp.sync()
+        time.sleep(1)
 
 logging.basicConfig(level=logging.INFO)
 
