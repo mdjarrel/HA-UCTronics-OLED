@@ -140,7 +140,7 @@ def image_to_data(image):
 
 class UCB86(object):
     """Representation of a UC-B86 board with ST7735 LCD"""
-    
+
     def __init__(self, width=ST7735_TFTWIDTH, height=ST7735_TFTHEIGHT, dev='/dev/i2c-1'):
         """Create an instance of the display using SPI communication.  Must
         provide the GPIO pin number for the D/C pin and the SPI driver.  Can
@@ -151,7 +151,7 @@ class UCB86(object):
         self.width = width
         self.height = height
         self.busfd = self.__openI2C()
-        
+
     def __openI2C(self):
         # I2C Init
         i2cd = os.open(self._dev, os.O_RDWR)
@@ -167,11 +167,11 @@ class UCB86(object):
         #msg = i2c_msg.write(I2C_ADDRESS,[command, high, low])
         #self._smbus.i2c_rdwr(msg)
         time.sleep(.00001)
-        
+
     def __i2c_burst_transfer(self, buff):
         count = 0
         length = len(buff)
-        
+
         self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x01);
         while length > count:
             if (length - count) > BURST_MAX_LENGTH:
@@ -189,7 +189,7 @@ class UCB86(object):
             time.sleep(0.0007);
         self.__i2c_write_command(BURST_WRITE_REG, 0x00, 0x00);
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
-        
+
     def __lcd_set_address_window(self, x0, y0, x1, y1):
         """Set display coordinates
         """
@@ -199,9 +199,9 @@ class UCB86(object):
         self.__i2c_write_command(Y_COORDINATE_REG, y0 + ST7735_YSTART, y1 + ST7735_YSTART)
         # write to RAM
         self.__i2c_write_command(CHAR_DATA_REG, 0x00, 0x00)
-        
+
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01)
-        
+
     def fill_rect(self, x, y, w, h, color):
         buff = [ (color >> 8) & 0xFF, color & 0xFF] * (w*h)
         count = 0
@@ -215,17 +215,17 @@ class UCB86(object):
         self.__lcd_set_address_window(x, y, x + w - 1, y + h - 1)
 
         self.__i2c_burst_transfer(buff)
-    
+
     def fill(self, color):
         self.fill_rect(0, 0, ST7735_WIDTH, ST7735_HEIGHT, color);
         self.__i2c_write_command(SYNC_REG, 0x00, 0x01);
-        
+
     def show(self):
         pass
-        
+
     def sync(self):
         self.__i2c_write_command(SYNC_REG, 0x00, 0x00);
-        
+
     def image(self, x=0, y=0, w=ST7735_WIDTH, h=ST7735_HEIGHT, data=[]):
         col = h - y
         row = w - x
